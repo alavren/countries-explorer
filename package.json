@@ -15,8 +15,10 @@
     "postbuild": "next-sitemap --config next-sitemap.config.js"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.0.0",
+    "graphql": "^16.8.1",
     "mongoose": "^8.0.3",
     "next": "^14.0.4",
     "next-auth": "^4.24.5",
