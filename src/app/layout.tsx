@@ -1,15 +1,15 @@
 import { Metadata } from 'next';
+import { getServerSession } from "next-auth";
 import * as React from 'react';
 
 import '@/styles/globals.css';
 
 import Nav from "@/components/Nav";
 
+import SessionProvider from "../../providers/SessionProvider";
+
 export const metadata: Metadata = {
-  title: {
-    default: 'Countries explorer',
-    template: '%s | Countries explorer',
-  },
+  title: 'Countries explorer',
   description: 'Simple countries explorer',
   robots: { index: true, follow: true },
   icons: {
@@ -20,16 +20,19 @@ export const metadata: Metadata = {
   manifest: `/favicon/site.webmanifest`,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getServerSession();
   return (
-    <html>
+    <html lang="en">
       <body>
-        <Nav />
-        {children}
+        <SessionProvider session={session}>
+          <Nav />
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
