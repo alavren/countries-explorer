@@ -1,33 +1,11 @@
 "use client";
 
-import { ApolloClient, gql, InMemoryCache, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import React, { useState } from 'react';
 
-const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  uri: 'https://countries.trevorblades.com'
-});
+import { COUNTRIES_QUERY } from "@/utils/queries";
 
-const COUNTRIES_QUERY = gql`
-  {
-    countries {
-      code
-      continent {
-        name
-      }
-      currency
-      emoji
-      languages {
-        code
-        name
-        native
-      }
-      name
-      native
-      phone
-    }
-  }
-`;
+import { client } from "../../lib/ApolloClient";
 
 
 const Dashboard: React.FC = () => {

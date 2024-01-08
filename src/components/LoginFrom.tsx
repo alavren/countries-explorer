@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { FormEvent, useEffect, useState } from "react";
 
+import { isValidEmail } from "@/utils/helpers";
+
 export default function LoginForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -18,12 +20,6 @@ export default function LoginForm() {
       router.replace("/dashboard");
     }
   }, [sessionStatus, router]);
-
-
-  const isValidEmail = (email: string) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -72,7 +68,7 @@ export default function LoginForm() {
             placeholder="Password"
             required
           />
-          <button className="bg-green-600 text-white font-bold cursor-pointer px-6 py-2">
+          <button className="bg-green-600 text-white font-bold cursor-pointer px-6 py-2" data-testid="login">
             Login
           </button>
           {error && (

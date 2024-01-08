@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { useEffect,useState } from "react";
 
+import { isValidEmail } from "@/utils/helpers";
+
 export default function RegisterForm() {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -19,10 +21,6 @@ export default function RegisterForm() {
     }
   }, [sessionStatus, router]);
 
-  const isValidEmail = (email: string) => {
-    const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
-    return emailRegex.test(email);
-  };
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 

@@ -5,7 +5,7 @@ import { signOut, useSession } from "next-auth/react";
 import React from 'react';
 
 const Nav: React.FC = () => {
-  const { data: session }: any = useSession();
+  const { data: session } = useSession();
 
   return (
     <nav className="bg-gray-800 p-4">
